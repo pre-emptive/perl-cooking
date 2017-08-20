@@ -1,0 +1,103 @@
+<div class="wikitext">
+<h1>Special Search Terms</h1>
+<br />
+<h2>Introduction</h2>
+<br />
+Special search terms can be used to perform advanced searches. For example, to search for documents with certain words in the title, or documents that contain all of a series of words.<br />
+<br />
+Special search terms can be entered just like ordinary words in a search requester. For example, entering &quot;fishing&quot; will perform a full text search of all documents for the word &quot;fishing&quot;. However, &quot;fishing intitle:fly&quot; will search for documents that contain the word fishing somewhere in them, but have &quot;fly&quot; in the title.<br />
+<br />
+<h2>Default Searches</h2>
+<br />
+Full text searches, searching for any or all of the search terms is the default behaviour.<br />
+<br />
+<h2>Exact Text Searches</h2>
+<br />
+To search for some text exactly, enclose it in quotes. For example:<br />
+<br />
+<tt> fly fishing</tt><br />
+<tt> &quot;fly fishing&quot;</tt><br />
+<br />
+The first example searches for &quot;fly&quot; or &quot;fishing&quot;, or both (the default behaviour). The second example searches for the words &quot;fly fishing&quot;. For a document to be returned, it must have those two words, in that order, next to each other  (so &quot;fly ruins fishing expedition&quot; and &quot;fishing fly&quot; would not match, but &quot;fly fishing by J.R.Hartley&quot; would).<br />
+<br />
+<h2>&quot;In Body&quot; Searches</h2>
+<br />
+To search in the body of the document, without searching titles, URLs etc, the &quot;inbody:&quot; prefix can be used. For example:<br />
+<br />
+<tt> inbody:fly</tt><br />
+<tt> inbody:fly inbody:fishing</tt><br />
+<br />
+The first example will search the main text of all documents for the word &quot;fly&quot;. Documents that have that word in the title but not the body will not be returned. The second example searches for &quot;fly&quot; or &quot;fishing&quot; or both in the body of documents.<br />
+<br />
+<h2>&quot;In Title&quot; Searches</h2>
+<br />
+To search in the title of documents, use the &quot;intitle:&quot; prefix. For example:<br />
+<br />
+<tt> intitle:fly</tt><br />
+<tt> intitle:fly intitle:fishing</tt><br />
+<tt> intitle:&quot;fly fishing&quot;</tt><br />
+<br />
+Here, the first example performs a search on the title only, looking for the word &quot;fly&quot;. The second example searches titles only, but for the word &quot;fly&quot; or the word &quot;fishing&quot; (or both). The last example searches titles for both words, in that order, much like Exact Text Searching.<br />
+<br />
+&quot;In Title&quot; search terms can be intermixed with other special search terms if required.<br />
+<br />
+<h2>&quot;In URL&quot; Searches</h2>
+<br />
+To search for documents who's URLs contain some text, use the &quot;inurl:&quot; prefix. For example:<br />
+<br />
+<tt> inurl:products</tt><br />
+<tt> inurl:products inurl:domestic</tt><br />
+<br />
+The first example searches for documents which have the word &quot;products&quot; in their urls. For example, &quot;http://www.example.com/products/main.html&quot; would match, as would &quot;http://products.example.com/&quot;. The second example searches in the same way for &quot;products&quot; or &quot;domestic&quot;, or both.<br />
+<br />
+The precise and compact nature of URLs may make searching in this way less likely to produce many search results. &quot;In URL&quot; search terms can be intermixed with other special terms if required.<br />
+<br />
+<h2>&quot;Site&quot; Search Limiters</h2>
+<br />
+Site search limiters restrict the search to a particular area of a web site. For example:<br />
+<br />
+<tt> site:www.example.com/products/ bargain</tt><br />
+<tt> site:http://support.example.com troubleshooting</tt><br />
+<br />
+The first example searches for documents that contain the word &quot;bargain&quot; that are located below &quot;www.example.com/products/&quot;. Pages such as &quot;http://www.example.com/products/domestic.html&quot; would match, where as &quot;http://www.example.com/bargains.html&quot; would not.<br />
+<br />
+The second example searches for &quot;troubleshooting&quot;, but only for pages that can be retrieved by HTTP (as opposed to HTTPS or FTP) that are located on the support.example.com server.<br />
+<br />
+Note: using the &quot;site:&quot; prefix on it's own does not perform a search; it is a search limiter that requires other search terms to initiate the actual search.<br />
+<br />
+<h2>&quot;File Type&quot; Search Limiters</h2>
+<br />
+File type search limiters restrict the search to particular file types (actually, it limits the search to the file extension). For example:<br />
+<br />
+<tt> filetype:html fishing</tt><br />
+<br />
+This example will search for documents with a &quot;.html&quot; suffix that contain the word &quot;fishing&quot;. This usually works as expected, but not all HTML files have a &quot;.html&quot; extension (for example, many PHP applications work with HTML but use the suffix &quot;.php&quot;).<br />
+<br />
+Note: using the &quot;filetype:&quot; prefix on it's own does not perform a search; it is a search limiter that requires other search terms to initiate the actual search.<br />
+<br />
+<h2>Mime Type Search Limiters</h2>
+<br />
+Mime Type search limiters restrict the search to particular MIME types. For example:<br />
+<br />
+<tt> mimetype:text/html fishing</tt><br />
+<br />
+This example will search for HTML documents only that contain the word &quot;fishing&quot;. Unlike &quot;filetype:&quot; this search will find any HTML documents, regardless of their file extension. Like the &quot;filetype:&quot; limiter, this prefix on it's own does not perform a search; it requires other terms to initiate an actual search.<br />
+<br />
+<h2>Boolean Searches</h2>
+<br />
+Searches can also contain booleans. That is, terms such as AND, OR, NOT. These can control the precision of the search. For example:<br />
+<br />
+<tt> fly AND fishing</tt><br />
+<tt> fly fishing NOT trout</tt><br />
+<br />
+The first example will search for the words &quot;fly&quot; and &quot;fishing&quot;, no matter where they are (in contrast to &quot;fly fishing&quot; which requires the words to be in that order and next to each other). The second example searches for all documents that contain &quot;fly&quot; or &quot;fishing&quot;, or both, but do not contain the word &quot;trout&quot;.<br />
+<br />
+The default is that all terms are optional (ie. term1 OR term2). However, an OR boolean is provided for completeness. Booleans can cause redundant terms to be entered. For example &quot;NOT trout AND fishing&quot; is interpreted as &quot;trout AND fishing&quot;, so the initial &quot;NOT&quot; is redundant; there are some limitations on the complexity of boolean searches (mostly in the order and precedence of terms).<br />
+<br />
+Boolean searches can also be performed using &quot;+&quot;, &quot;|&quot; and &quot;-&quot; instead of AND, OR and NOT respectively, although only by prefixing terms. For example the following are equivalent:<br />
+<br />
+<tt> summer OR fly AND fishing NOT trout</tt><br />
+<tt> summer |fly +fishing -trout</tt><br />
+<br />
+
+</div> 

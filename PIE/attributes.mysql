@@ -1,0 +1,46 @@
+-- $Id$
+--
+-- PIE - Perl Inference Engine
+-- (C)2007, Ralph Bolton, Pre-Emptive Limited
+-- GNU Public License V2 licensed.
+-- No warranty is expressed or implied. Use of this software is
+-- entirely at the user's risk. Pre-Emptive or it's employees accept
+-- no liability for any damage or loss caused by use of this software.
+-- For more information, please see http://www.pre-emptive.net/gpl2
+
+-- pie_sequences
+-- We use a database table to store a "sequence" number. This is used to
+-- check "freshness" of values within the knowledge base. Indeed, it's used
+-- pretty much anywhere a unique number is required.
+DROP TABLE IF EXISTS `pie_sequences`;
+CREATE TABLE `pie_sequences` (
+  `name` varchar(255) NOT NULL default '',
+  `id` int(10) unsigned NOT NULL default '0',
+  PRIMARY KEY  (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- pie_attributes
+-- Used to store attribute names/values (with optional confidence values).
+-- Also stores a measure of "freshness" (via sequences) and dependencies on it.
+DROP TABLE IF EXISTS pie_attributes;
+CREATE TABLE pie_attributes (
+  id INT(10) unsigned NOT NULL,
+	name VARCHAR(255),
+	state INT(10) unsigned,
+	value VARCHAR(255),
+	confidence FLOAT(10) unsigned,
+	sequence INT(10) unsigned,
+	PRIMARY KEY (name)
+);
+
+-- pie_dependencies
+-- Lists of dependencies, for attributes
+DROP TABLE IF EXISTS pie_dependencies;
+CREATE TABLE pie_dependencies (
+	id INT(10) unsigned,
+	name VARCHAR(255),
+	PRIMARY KEY (id)
+);
+
+-- The following line is for Vim users - please don't delete it.
+-- vim: set filetype=sql expandtab tabstop=2 shiftwidth=2:

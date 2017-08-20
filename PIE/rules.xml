@@ -1,0 +1,84 @@
+<xml>
+ <pieknowledgebase>
+  <rule name="Connection State">
+   <condition attribute="link.state">up</condition>
+   <condition attribute="local.router.state">up</condition>
+   <condition attribute="remote.router.state">up</condition>
+   <action attribute="internet.connection">up</action>
+  </rule>
+
+  <rule name="Link Down">
+   <condition attribute="link.state">down</condition>
+   <action attribute="internet.connection">down</action>
+  </rule>
+
+  <rule name="Local Router">
+   <condition attribute="local.router.state">down</condition>
+   <action attribute="internet.connection">down</action>
+  </rule>
+
+  <rule name="Remote Router">
+   <condition attribute="remote.router.state">down</condition>
+   <action attribute="internet.connection">down</action>
+  </rule>
+
+  <rule name="DNS1">
+   <condition attribute="dns1.state">up</condition>
+   <action attribute="dns.service">up</action>
+  </rule>
+
+  <rule name="DNS2">
+   <condition attribute="dns2.state">up</condition>
+   <action attribute="dns.service">up</action>
+  </rule>
+
+  <rule name="DNS Down">
+   <condition attribute="dns1.state">down</condition>
+   <condition attribute="dns2.state">down</condition>
+   <action attribute="dns.service">down</action>
+  </rule>
+
+  <rule name="Internet State">
+   <condition attribute="dns.service">up</condition>
+   <condition attribute="internet.connection">up</condition>
+   <action attribute="internet.status">up</action>
+  </rule>
+
+  <rule name="Internet no DNS">
+   <condition attribute="dns.service">down</condition>
+   <action attribute="internet.status">down</action>
+  </rule>
+
+  <rule name="Internet no network">
+   <condition attribute="internet.connection">down</condition>
+   <action attribute="internet.status">down</action>
+  </rule>
+
+  <question attribute="link.state">What is the state of the Internet link?
+   <response>up</response>
+   <response>down</response>
+  </question>
+
+  <question attribute="local.router.state">What is the state of the local router?
+   <response>up</response>
+   <response>down</response>
+  </question>
+
+  <question attribute="remote.router.state">What is the state of the remote router?
+   <response>up</response>
+   <response>down</response>
+  </question>
+
+  <question attribute="dns1.state">What is the state of DNS server 1?
+   <response>up</response>
+   <response>down</response>
+  </question>
+
+  <question attribute="dns2.state">What is the state of DNS server 2?
+   <response>up</response>
+   <response>down</response>
+  </question>
+
+ </pieknowledgebase>
+</xml>
+
